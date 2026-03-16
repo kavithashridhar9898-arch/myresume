@@ -19,20 +19,11 @@ const pool = process.env.DATABASE_URL ?
         connectionTimeoutMillis: 60000
     });
 
-// Compatibility wrapper to make PostgreSQL work like MySQL
+// Database query helper
 const db = {
     query: async (sql, params) => {
-        // Convert MySQL ? placeholders to PostgreSQL $1, $2, etc.
-        let pgSql = sql;
-        let paramIndex = 1;
-        while (pgSql.includes('?')) {
-            pgSql = pgSql.replace('?', `$${paramIndex++}`);
-        }
-        
-        const result = await pool.query(pgSql, params);
-        
-        // Return MySQL-compatible format [rows, fields]
-        return [result.rows, result.fields];
+        const result = await pool.query(sql, params);
+        return result;
     }
 };
 

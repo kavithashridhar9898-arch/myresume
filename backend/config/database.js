@@ -8,10 +8,13 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME || 'myresume',
     port: process.env.DB_PORT || 3306,
     waitForConnections: true,
-    connectionLimit: 10,
+    connectionLimit: 5,
     queueLimit: 0,
     enableKeepAlive: true,
-    keepAliveInitialDelay: 0,
+    keepAliveInitialDelay: 10000,
+    connectTimeout: 60000,
+    acquireTimeout: 60000,
+    timeout: 60000,
     ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
 });
 

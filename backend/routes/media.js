@@ -88,7 +88,7 @@ router.post('/upload', authenticateToken, upload.single('file'), async (req, res
 
         // Save to database
         const dbResult = await db.query(
-            'INSERT INTO media (type, file_path, file_name, file_size, mime_type, alt_text) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+            'INSERT INTO media (type, file_path, filename, file_size, mime_type, alt_text) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
             [type, uploadResult.secure_url, req.file.originalname, req.file.size, req.file.mimetype, alt_text]
         );
 
@@ -99,7 +99,7 @@ router.post('/upload', authenticateToken, upload.single('file'), async (req, res
                 id: dbResult.rows[0].id,
                 type,
                 file_path: uploadResult.secure_url,
-                file_name: req.file.originalname,
+                filename: req.file.originalname,
                 file_size: req.file.size,
                 mime_type: req.file.mimetype,
                 alt_text

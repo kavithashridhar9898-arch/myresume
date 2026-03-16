@@ -6,13 +6,13 @@ const db = require('../config/database');
 // Generate QR code
 router.get('/', async (req, res) => {
     try {
-        const [profiles] = await db.query('SELECT github, linkedin, leetcode FROM profile LIMIT 1');
+        const result = await db.query('SELECT github, linkedin, leetcode FROM profile LIMIT 1');
         
-        if (profiles.length === 0) {
+        if (result.rows.length === 0) {
             return res.status(404).json({ message: 'Profile not found' });
         }
 
-        const profile = profiles[0];
+        const profile = result.rows[0];
         const linksData = {
             github: profile.github,
             linkedin: profile.linkedin,
@@ -47,13 +47,13 @@ router.get('/', async (req, res) => {
 // Get social links data
 router.get('/links', async (req, res) => {
     try {
-        const [profiles] = await db.query('SELECT name, github, linkedin, leetcode FROM profile LIMIT 1');
+        const result = await db.query('SELECT name, github, linkedin, leetcode FROM profile LIMIT 1');
         
-        if (profiles.length === 0) {
+        if (result.rows.length === 0) {
             return res.status(404).json({ message: 'Profile not found' });
         }
 
-        res.json(profiles[0]);
+        res.json(result.rows[0]);
     } catch (error) {
         console.error('Get links error:', error);
         res.status(500).json({ message: 'Server error' });

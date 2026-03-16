@@ -10,13 +10,13 @@ const login = async (req, res) => {
             return res.status(400).json({ message: 'Username and password are required' });
         }
 
-        const [users] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+        const result = await db.query('SELECT * FROM users WHERE username = $1', [username]);
 
-        if (users.length === 0) {
+        if (result.rows.length === 0) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        const user = users[0];
+        const user = result.rows[0];
         const isValidPassword = await bcrypt.compare(password, user.password_hash);
 
         if (!isValidPassword) {

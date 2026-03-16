@@ -6,6 +6,12 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Log environment for debugging
+console.log('Environment check:');
+console.log('  NODE_ENV:', process.env.NODE_ENV);
+console.log('  PGHOST:', process.env.PGHOST ? 'Set' : 'Not set');
+console.log('  PGDATABASE:', process.env.PGDATABASE ? 'Set' : 'Not set');
+
 // Middleware
 app.use(cors());
 app.use(express.json());

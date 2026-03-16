@@ -1,29 +1,44 @@
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 require('dotenv').config();
 
-const pool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'myresume',
-    port: process.env.DB_PORT || 3306,
-    waitForConnections: true,
-    connectionLimit: 5,
-    queueLimit: 0,
-    enableKeepAlive: true,
-    keepAliveInitialDelay: 10000,
-    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
+const pool = new Pool({
+    host: process.env.DB_HOST || process.env.PGHOST || 'localhost',
+    user: process.env.DB_USER || process.env.PGUSER || 'postgres',
+    password: process.env.DB_PASSWORD || process.env.PGPASSWORD || '',
+    database: process.env.DB_NAME || process.env.PGDATABASE || 'myresume',
+    port: process.env.DB_PORT || process.env.PGPORT || 5432,
+    ssl: process.env.DB_SSL === 'true' || process.env.PGSSLMODE ? { rejectUnauthorized: false } : false,
+    max: 5,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 60000
 });
 
+// Compatibility wrapper to make PostgreSQL work like MySQL
+const db = {
+    query: async (sql, params) => {
+        // Convert MySQL ? placeholders to PostgreSQL $1, $2, etc.
+        let pgSql = sql;
+        let paramIndex = 1;
+        while (pgSql.includes('?')) {
+            pgSql = pgSql.replace('?', `$${paramIndex++}`);
+        }
+        
+        const result = await pool.query(pgSql, params);
+        
+        // Return MySQL-compatible format [rows, fields]
+        return [result.rows, result.fields];
+    }
+};
+
 // Test connection
-pool.getConnection()
-    .then(connection => {
+pool.connect()
+    .then(client => {
         console.log('✓ Database connected successfully');
-        connection.release();
+        client.release();
     })
     .catch(err => {
         console.error('✗ Database connection failed:', err.message);
-        console.log('  Please check your MySQL credentials in .env file');
+        console.log('  Please check your database credentials in .env file');
     });
 
-module.exports = pool;
+module.exports = db;

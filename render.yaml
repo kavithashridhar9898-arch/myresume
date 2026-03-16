@@ -10,28 +10,28 @@ services:
         value: production
       - key: JWT_SECRET
         generateValue: true
-      - key: DB_HOST
+      - key: PGHOST
         fromDatabase:
           name: myresume-db
           property: host
-      - key: DB_PORT
+      - key: PGPORT
         fromDatabase:
           name: myresume-db
           property: port
-      - key: DB_USER
+      - key: PGUSER
         fromDatabase:
           name: myresume-db
           property: user
-      - key: DB_PASSWORD
+      - key: PGPASSWORD
         fromDatabase:
           name: myresume-db
           property: password
-      - key: DB_NAME
+      - key: PGDATABASE
         fromDatabase:
           name: myresume-db
           property: database
-      - key: DB_SSL
-        value: "true"
+      - key: PGSSLMODE
+        value: "require"
 
 databases:
   - name: myresume-db

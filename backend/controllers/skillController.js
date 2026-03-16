@@ -2,13 +2,16 @@ const db = require('../config/database');
 
 const getAllSkills = async (req, res) => {
     try {
+        console.log('Fetching all skills...');
         const result = await db.query(
             'SELECT * FROM skills ORDER BY category, display_order ASC'
         );
+        console.log('Skills fetched:', result.rows.length);
         res.json(result.rows);
     } catch (error) {
-        console.error('Get skills error:', error);
-        res.status(500).json({ message: 'Server error' });
+        console.error('Get skills error:', error.message);
+        console.error('Stack:', error.stack);
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 

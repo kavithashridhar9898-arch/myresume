@@ -54,13 +54,18 @@ router.get('/type/:type', async (req, res) => {
 // Upload media to Cloudinary
 router.post('/upload', authenticateToken, upload.single('file'), async (req, res) => {
     try {
+        console.log('Upload request received');
+        
         if (!req.file) {
+            console.log('No file in request');
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
+        console.log('File received:', req.file.originalname, 'Size:', req.file.size);
         const { type = 'image', alt_text = '' } = req.body;
 
         // Upload to Cloudinary
+        console.log('Starting Cloudinary upload...');
         const uploadResult = await new Promise((resolve, reject) => {
             const stream = cloudinary.uploader.upload_stream(
                 {
@@ -69,8 +74,13 @@ router.post('/upload', authenticateToken, upload.single('file'), async (req, res
                     public_id: `file-${Date.now()}-${Math.round(Math.random() * 1E9)}`
                 },
                 (error, result) => {
-                    if (error) reject(error);
-                    else resolve(result);
+                    if (error) {
+                        console.error('Cloudinary upload error:', error);
+                        reject(error);
+                    } else {
+                        console.log('Cloudinary upload success:', result.secure_url);
+                        resolve(result);
+                    }
                 }
             );
             stream.end(req.file.buffer);

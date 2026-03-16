@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: myresume-portfolio
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node backend/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: myresume-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: myresume-db
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: myresume-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: myresume-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: myresume-db
+          property: database
+      - key: DB_SSL
+        value: "true"
+
+databases:
+  - name: myresume-db
+    plan: free
+    databaseName: myresume
+    user: myresume

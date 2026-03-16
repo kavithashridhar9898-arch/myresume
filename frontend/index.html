@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyResume - Premium Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">MyResume</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#qr" class="nav-link">Connect</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta magnetic-btn">Contact Me</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div id="hero-canvas"></div>
+        <div class="hero-particles"></div>
+        <div class="hero-content">
+            <div class="hero-subtitle">
+                <span class="line"></span>
+                <span class="text">Welcome to my portfolio</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Hi, I'm</span>
+                <span class="title-name" id="hero-name">Loading...</span>
+            </h1>
+            <p class="hero-role" id="hero-title">Loading...</p>
+            <p class="hero-description" id="hero-bio">Loading...</p>
+            <div class="hero-buttons">
+                <a href="#resume" class="btn btn-primary magnetic-btn">
+                    <span>View Resume</span>
+                    <i class="fas fa-file-alt"></i>
+                </a>
+                <a href="#projects" class="btn btn-secondary magnetic-btn">
+                    <span>View Projects</span>
+                    <i class="fas fa-rocket"></i>
+                </a>
+                <a href="#contact" class="btn btn-outline magnetic-btn">
+                    <span>Contact Me</span>
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-tech-stack">
+            <div class="tech-scroll">
+                <div class="tech-track" id="tech-track">
+                    <!-- Tech icons will be populated by JS -->
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <span class="section-tag">About Me</span>
+            <h2 class="section-title">Who I Am</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-image">
+                <div class="image-frame">
+                    <div class="image-glow"></div>
+                    <img id="profile-image" src="" alt="Profile">
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="about-text" id="about-text">
+                    <p>Loading...</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="30">0</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                </div>
+                <div class="about-social">
+                    <a href="#" class="social-link magnetic-btn" id="github-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link magnetic-btn" id="linkedin-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link magnetic-btn" id="leetcode-link" target="_blank">
+                        <i class="fas fa-code"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <span class="section-tag">Portfolio</span>
+            <h2 class="section-title">Featured Projects</h2>
+        </div>
+        <div class="projects-grid" id="projects-grid">
+            <!-- Projects will be populated by JS -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <span class="section-tag">Expertise</span>
+            <h2 class="section-title">My Skills</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skills-categories" id="skills-container">
+                <!-- Skills will be populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume">
+        <div class="section-header">
+            <span class="section-tag">Resume</span>
+            <h2 class="section-title">My Experience</h2>
+        </div>
+        <div class="resume-container">
+            <div class="resume-viewer">
+                <div class="resume-preview" id="resume-preview">
+                    <div class="resume-placeholder">
+                        <i class="fas fa-file-pdf"></i>
+                        <p>Your resume will appear here</p>
+                        <span>Upload your resume from the admin panel</span>
+                    </div>
+                </div>
+            </div>
+            <div class="resume-actions">
+                <a href="#" class="btn btn-primary magnetic-btn" id="download-resume">
+                    <i class="fas fa-download"></i>
+                    <span>Download Resume</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Code Section -->
+    <section id="qr" class="qr-section">
+        <div class="section-header">
+            <span class="section-tag">Connect</span>
+            <h2 class="section-title">Scan to Connect</h2>
+        </div>
+        <div class="qr-container">
+            <div class="qr-card">
+                <div class="qr-glow"></div>
+                <div class="qr-content">
+                    <div class="qr-code-wrapper">
+                        <img id="qr-code" src="" alt="QR Code">
+                        <div class="qr-pulse"></div>
+                    </div>
+                    <h3>Quick Connect</h3>
+                    <p>Scan this QR code to access all my social profiles</p>
+                    <div class="qr-links">
+                        <a href="#" class="qr-link" id="qr-github" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="#" class="qr-link" id="qr-linkedin" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="qr-link" id="qr-leetcode" target="_blank">
+                            <i class="fas fa-code"></i>
+                            <span>LeetCode</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <span class="section-tag">Get in Touch</span>
+            <h2 class="section-title">Contact Me</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <span class="contact-label">Email</span>
+                        <a href="#" id="contact-email">your.email@example.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <span class="contact-label">Location</span>
+                        <span id="contact-location">Your Location</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <span class="contact-label">Phone</span>
+                        <span id="contact-phone">+1 234 567 890</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-text">MyResume</span>
+                <p>Crafting digital experiences with passion and precision.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="/admin">Admin</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MyResume. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
